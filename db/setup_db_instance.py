@@ -45,7 +45,7 @@ logger.addHandler(handler)
 
 
 # Setup db
-def setup_db():
+def setup_db_instance():
   rds = boto3.client(
     'rds',
     region_name=REGION,

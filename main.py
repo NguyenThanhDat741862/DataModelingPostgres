@@ -1,6 +1,6 @@
 import os
 import configparser
-from db import setup_db
+from db import setup_db_instance
 
 config = configparser.ConfigParser()
 config.read_file(open(os.path.join(os.path.dirname(__file__), 'config.ini')))
@@ -11,7 +11,7 @@ def main():
   # Reset file log
   open(LOG, 'w').close()
 
-  setup_db()
+  setup_db_instance()
 
 if __name__ == '__main__':
   main()

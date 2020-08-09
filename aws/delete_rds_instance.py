@@ -1,6 +1,9 @@
+import sys
+sys.path.append('../')
+from logger import get_logger
+
 import os
 import time
-import logging
 import boto3
 import botocore
 import configparser
@@ -10,8 +13,6 @@ import configparser
 config = configparser.ConfigParser()
 config.read_file(open(os.path.join(os.path.dirname(__file__), '../config.ini')))
 
-LOG                  = config.get('LOG','LOG')
-
 KEY                  = config.get('AWS','KEY')
 SECRET               = config.get('AWS','SECRET')
 REGION               = config.get('AWS','REGION')
@@ -20,13 +21,7 @@ DBINSTANCEIDENTIFIER = config.get('RDS','DBINSTANCEIDENTIFIER')
 
 
 # Setup logger
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler = logging.FileHandler(LOG)
-handler.setLevel(logging.DEBUG)
-handler.setFormatter(formatter)
-logger = logging.getLogger('SETUP-RDS')
-logger.setLevel(logging.DEBUG)
-logger.addHandler(handler)
+logger = get_logger('DELETE-RDS')
 
 
 # Delete db func
@@ -38,7 +33,7 @@ def delete_db():
     aws_secret_access_key=SECRET
   )
 
-  logger.info(f"Start delete RDS {DBINSTANCEIDENTIFIER} instance")
+  logger.info(f"Start deleting RDS {DBINSTANCEIDENTIFIER} instance")
   
   try:
     response = rds.delete_db_instance(
@@ -65,7 +60,7 @@ def delete_db():
 
       break
 
-  logger.info(f"Finish delete RDS {DBINSTANCEIDENTIFIER} instance" + 
+  logger.info(f"Finish deleting RDS {DBINSTANCEIDENTIFIER} instance" + 
   '\n------------------------------------------------------------------------------------------')
 
 

@@ -1,6 +1,9 @@
+import sys
+sys.path.append('../')
+from logger import get_logger
+
 import os
 import time
-import logging
 import boto3
 import botocore
 import configparser
@@ -9,8 +12,6 @@ import configparser
 # Config
 config = configparser.ConfigParser()
 config.read_file(open(os.path.join(os.path.dirname(__file__), '../config.ini')))
-
-LOG                     = config.get('LOG','LOG')
 
 KEY                     = config.get('AWS','KEY')
 SECRET                  = config.get('AWS','SECRET')
@@ -35,13 +36,7 @@ STORAGETYPE             = config.get('RDS','STORAGETYPE')
 
 
 # Setup logger
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler = logging.FileHandler(LOG)
-handler.setLevel(logging.DEBUG)
-handler.setFormatter(formatter)
-logger = logging.getLogger('SETUP-RDS')
-logger.setLevel(logging.DEBUG)
-logger.addHandler(handler)
+logger = get_logger('SETUP-RDS')
 
 
 # Setup db
@@ -53,7 +48,7 @@ def setup_db_instance():
     aws_secret_access_key=SECRET
   )
 
-  logger.info(f"Start setup RDS {DBINSTANCEIDENTIFIER} instance")
+  logger.info(f"Start setting up RDS {DBINSTANCEIDENTIFIER} instance")
   
   try:
     response = rds.create_db_instance(
@@ -105,5 +100,5 @@ def setup_db_instance():
       logger.error(e)
       raise
 
-  logger.info(f"Finish setup RDS {DBINSTANCEIDENTIFIER} instance" +
+  logger.info(f"Finish setting up RDS {DBINSTANCEIDENTIFIER} instance" +
   '\n------------------------------------------------------------------------------------------')

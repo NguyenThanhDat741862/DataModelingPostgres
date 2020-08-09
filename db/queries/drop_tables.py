@@ -1,0 +1,5 @@
+songplay_table_drop = "DROP TABLE IF EXISTS songplays CASCADE;"
+user_table_drop     = "DROP TABLE IF EXISTS users CASCADE;"
+song_table_drop     = "DROP TABLE IF EXISTS songs CASCADE;"
+artist_table_drop   = "DROP TABLE IF EXISTS artists CASCADE;"
+time_table_drop     = "DROP TABLE IF EXISTS time CASCADE;"

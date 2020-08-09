@@ -1,6 +1,6 @@
 import os
 import configparser
-from db import setup_db_instance
+from aws import setup_db_instance
 
 config = configparser.ConfigParser()
 config.read_file(open(os.path.join(os.path.dirname(__file__), 'config.ini')))

@@ -1,14 +1,12 @@
 import sys
 sys.path.append('../')
 from logger import get_logger
-
 import psycopg2
 
 # Setup logger
 logger = get_logger('EXECUTE-SQL')
 
 
-#
 def execute_sql(conn, sql, is_fetchable):
   logger.info(f"Start executing sql")
 
@@ -23,6 +21,9 @@ def execute_sql(conn, sql, is_fetchable):
   result = cur.fetchall() if is_fetchable else None
   cur.close()
 
+  logged_sql = sql.replace("\n", " ").strip()
+
+  logger.info(f'Executing: "{logged_sql}"')
   logger.info(f"Finish executing sql")
 
   return result

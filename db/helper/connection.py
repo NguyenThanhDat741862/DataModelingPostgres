@@ -23,8 +23,7 @@ DBPORT     = config.getint('DB','DBPORT')
 logger = get_logger('CONNECT-DB')
 
 
-#
-def connect_to_db():
+def connect_to_db(autocommit=True):
   logger.info(f"Start connecting to {DBNAME} DB")
 
   try:
@@ -36,10 +35,10 @@ def connect_to_db():
         port=DBPORT
     )
 
-    conn.set_session(autocommit=True)
+    conn.set_session(autocommit=autocommit)
 
-    logger.info(f"Successfully connect to {DBNAME} DB" +
-    '\n------------------------------------------------------------------------------------------')
+    logger.info(f"Successfully connect to {DBNAME} DB")
+
     return conn
   except psycopg2.Error as e:
     logger.error(e)

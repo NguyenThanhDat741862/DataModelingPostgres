@@ -1,8 +1,6 @@
-import sys
-sys.path.append('../')
 from logger import get_logger
-from helper import connect_to_db, close_connection, execute_sql
-from queries import database_drop, database_create, \
+from .helper import connect_to_db, close_connection, execute_sql
+from .queries import database_drop, database_create, \
                     songplay_table_drop, \
                     user_table_drop, \
                     song_table_drop, \
@@ -14,34 +12,29 @@ from queries import database_drop, database_create, \
                     artist_table_create, \
                     time_table_create
 
-import psycopg2
-
 # Setup logger
 logger = get_logger('CREATE-SCHEMA')
 
-def create_db_schema():
-  logger.info(f"Start creating DB schema")
+def create_schema():
+  logger.info(f"Start creating Schema")
 
-  conn = connect_to_db()
-
-  execute_sql(conn, database_drop, False)
-  execute_sql(conn, database_create, False)
+  conn = connect_to_db(False)
 
   execute_sql(conn, user_table_drop, False)
   execute_sql(conn, song_table_drop, False)
   execute_sql(conn, artist_table_drop, False)
   execute_sql(conn, time_table_drop, False)
   execute_sql(conn, songplay_table_drop, False)
+  conn.commit()
 
   execute_sql(conn, time_table_create, False)
   execute_sql(conn, user_table_create, False)
   execute_sql(conn, artist_table_create, False)
   execute_sql(conn, song_table_create, False)
   execute_sql(conn, songplay_table_create, False)
+  conn.commit()
 
   close_connection(conn)
 
-  logger.info(f"Finish creating DB schema" +
+  logger.info(f"Finish creating Schema" +
   '\n------------------------------------------------------------------------------------------')
-
-create_db_schema()

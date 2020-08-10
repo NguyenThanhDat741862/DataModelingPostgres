@@ -1,12 +1,9 @@
-import sys
-sys.path.append('../')
-from logger import get_logger
-
 import os
 import time
 import boto3
 import botocore
 import configparser
+from logger import get_logger
 
 
 # Config
@@ -25,7 +22,7 @@ logger = get_logger('DELETE-RDS')
 
 
 # Delete db func
-def delete_db():
+def delete_rds_instance():
   rds = boto3.client(
     'rds',
     region_name=REGION,

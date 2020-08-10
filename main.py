@@ -1,20 +1,14 @@
 import os
-import configparser
+from config import config
 from aws import setup_rds_instance, delete_rds_instance
 from db import create_db, create_schema
 
-config = configparser.ConfigParser()
-config.read_file(open(os.path.join(os.path.dirname(__file__), 'config.ini')))
-
-LOG = config.get('LOG','LOG')
-DBONCLOUD = config.get('OPT','DBONCLOUD')
+LOG       = config['LOG']['LOG']
+DBONCLOUD = config['OPT']['DBONCLOUD']
 
 def main():
-  # Reset file log
-  open(LOG, 'w').close()
-
   # if DBONCLOUD:
-    # setup_rds_instance()
+  #   setup_rds_instance()
   
   # delete_rds_instance()
 
@@ -22,4 +16,7 @@ def main():
   create_schema()
 
 if __name__ == '__main__':
+  # Reset file log
+  open(LOG, 'w').close()
+  
   main()

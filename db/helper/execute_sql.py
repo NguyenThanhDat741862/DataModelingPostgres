@@ -1,7 +1,6 @@
-import sys
-sys.path.append('../')
-from logger import get_logger
 import psycopg2
+from logger import get_logger
+
 
 # Setup logger
 logger = get_logger('EXECUTE-SQL')

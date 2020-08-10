@@ -12,8 +12,10 @@ from .queries import database_drop, database_create, \
                     artist_table_create, \
                     time_table_create
 
+
 # Setup logger
 logger = get_logger('CREATE-SCHEMA')
+
 
 def create_schema():
   logger.info(f"Start creating Schema")

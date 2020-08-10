@@ -12,6 +12,7 @@ songplay_table_create = ("""
   user_agent text)
 """)
 
+
 # Dimension table
 user_table_create = ("""
   CREATE TABLE IF NOT EXISTS users

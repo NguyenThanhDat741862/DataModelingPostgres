@@ -1,13 +1,10 @@
-import os
 import logging
-import configparser
+from config import config
 
 
 # Config
-config = configparser.ConfigParser()
-config.read_file(open(os.path.join(os.path.dirname(__file__), '../config.ini')))
+LOG = config['LOG']['LOG']
 
-LOG = os.path.join(os.path.dirname(__file__), f"../{config.get('LOG','LOG')}")
 
 def get_logger(name):
   formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

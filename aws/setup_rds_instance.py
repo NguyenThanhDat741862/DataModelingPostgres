@@ -1,35 +1,31 @@
-import os
 import time
 import boto3
 import botocore
-import configparser
+from config import config
 from logger import get_logger
 
 
 # Config
-config = configparser.ConfigParser()
-config.read_file(open(os.path.join(os.path.dirname(__file__), '../config.ini')))
+KEY                     = config['AWS']['KEY']
+SECRET                  = config['AWS']['SECRET']
+REGION                  = config['AWS']['REGION']
 
-KEY                     = config.get('AWS','KEY')
-SECRET                  = config.get('AWS','SECRET')
-REGION                  = config.get('AWS','REGION')
-
-DBNAME                  = config.get('RDS','DBNAME')
-DBINSTANCEIDENTIFIER    = config.get('RDS','DBINSTANCEIDENTIFIER')
-ALLOCATEDSTORAGE        = config.getint('RDS','ALLOCATEDSTORAGE')
-DBINSTANCECLASS         = config.get('RDS','DBINSTANCECLASS')
-ENGINE                  = config.get('RDS','ENGINE')
-ENGINEVERSION           = config.get('RDS','ENGINEVERSION')
-MASTERUSERNAME          = config.get('RDS','MASTERUSERNAME')
-MASTERUSERPASSWORD      = config.get('RDS','MASTERUSERPASSWORD')
-VPCSECURITYGROUPIDS     = config.get('RDS','VPCSECURITYGROUPIDS')
-AVAILABILITYZONE        = config.get('RDS','AVAILABILITYZONE')
-BACKUPRETENTIONPERIOD   = config.getint('RDS', 'BACKUPRETENTIONPERIOD')
-DBPORT                  = config.getint('RDS','DBPORT')
-MULTIAZ                 = config.getboolean('RDS', 'MULTIAZ')
-AUTOMINORVERSIONUPGRADE = config.getboolean('RDS','AUTOMINORVERSIONUPGRADE')
-PUBLICLYACCESSIBLE      = config.getboolean('RDS','PUBLICLYACCESSIBLE')
-STORAGETYPE             = config.get('RDS','STORAGETYPE')
+DBNAME                  = config['RDS']['DBNAME']
+DBINSTANCEIDENTIFIER    = config['RDS']['DBINSTANCEIDENTIFIER']
+ALLOCATEDSTORAGE        = config['RDS']['ALLOCATEDSTORAGE']
+DBINSTANCECLASS         = config['RDS']['DBINSTANCECLASS']
+ENGINE                  = config['RDS']['ENGINE']
+ENGINEVERSION           = config['RDS']['ENGINEVERSION']
+MASTERUSERNAME          = config['RDS']['MASTERUSERNAME']
+MASTERUSERPASSWORD      = config['RDS']['MASTERUSERPASSWORD']
+VPCSECURITYGROUPIDS     = config['RDS']['VPCSECURITYGROUPIDS']
+AVAILABILITYZONE        = config['RDS']['AVAILABILITYZONE']
+BACKUPRETENTIONPERIOD   = config['RDS']['BACKUPRETENTIONPERIOD']
+DBPORT                  = config['RDS']['DBPORT']
+MULTIAZ                 = config['RDS']['MULTIAZ']
+AUTOMINORVERSIONUPGRADE = config['RDS']['AUTOMINORVERSIONUPGRADE']
+PUBLICLYACCESSIBLE      = config['RDS']['PUBLICLYACCESSIBLE']
+STORAGETYPE             = config['RDS']['STORAGETYPE']
 
 
 # Setup logger

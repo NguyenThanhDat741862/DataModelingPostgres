@@ -1,20 +1,16 @@
-import os
 import time
 import boto3
 import botocore
-import configparser
+from config import config
 from logger import get_logger
 
 
 # Config
-config = configparser.ConfigParser()
-config.read_file(open(os.path.join(os.path.dirname(__file__), '../config.ini')))
+KEY                  = config['AWS']['KEY']
+SECRET               = config['AWS']['SECRET']
+REGION               = config['AWS']['REGION']
 
-KEY                  = config.get('AWS','KEY')
-SECRET               = config.get('AWS','SECRET')
-REGION               = config.get('AWS','REGION')
-
-DBINSTANCEIDENTIFIER = config.get('RDS','DBINSTANCEIDENTIFIER')
+DBINSTANCEIDENTIFIER = config['RDS']['DBINSTANCEIDENTIFIER']
 
 
 # Setup logger

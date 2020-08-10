@@ -1,22 +1,14 @@
-import sys
-sys.path.append('../')
-from logger import get_logger
-
-import os
-import logging
 import psycopg2
-import configparser
+from config import config 
+from logger import get_logger
 
 
 # Config
-config = configparser.ConfigParser()
-config.read_file(open(os.path.join(os.path.dirname(__file__), '../../config.ini')))
-
-DBNAME     = config.get('DB', 'DBNAME')
-DBUSERNAME = config.get('DB','DBUSERNAME')
-DBPASSWORD = config.get('DB','DBPASSWORD')
-DBHOST     = config.get('DB','DBHOST')
-DBPORT     = config.getint('DB','DBPORT')
+DBNAME     = config['DB']['DBNAME']
+DBUSERNAME = config['DB']['DBUSERNAME']
+DBPASSWORD = config['DB']['DBPASSWORD']
+DBHOST     = config['DB']['DBHOST']
+DBPORT     = config['DB']['DBPORT']
 
 
 # Setup logger

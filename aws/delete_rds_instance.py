@@ -53,8 +53,7 @@ def delete_rds_instance():
 
       break
 
-  logger.info(f"Finish deleting RDS {DBINSTANCEIDENTIFIER} instance" + 
-  '\n------------------------------------------------------------------------------------------')
+  logger.info(f"Finish deleting RDS {DBINSTANCEIDENTIFIER} instance")
 
 
 # Run

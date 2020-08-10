@@ -16,8 +16,6 @@ logger = get_logger('CONNECT-DB')
 
 
 def connect_to_db(autocommit=True):
-  logger.info(f"Start connecting to {DBNAME} DB")
-
   try:
     conn = psycopg2.connect(
         database=DBNAME,
@@ -37,8 +35,6 @@ def connect_to_db(autocommit=True):
     return None
 
 def close_connection(conn):
-  logger.info(f"Start closing connection to {DBNAME} DB")
-
   try:
     conn.close()
   except psycopg2.Error as e:

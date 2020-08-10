@@ -1,5 +1,5 @@
 from logger import get_logger
-from .helper import connect_to_db, close_connection, execute_sql
+from .connection import connect_to_db, close_connection, execute_sql
 from .queries import database_drop, database_create
 
 
@@ -17,5 +17,4 @@ def create_db():
 
   close_connection(conn)
 
-  logger.info(f"Finish creating DB" +
-  '\n------------------------------------------------------------------------------------------')
+  logger.info(f"Finish creating DB")

@@ -93,5 +93,4 @@ def setup_rds_instance():
       logger.error(e)
       raise
 
-  logger.info(f"Finish setting up RDS {DBINSTANCEIDENTIFIER} instance" +
-  '\n------------------------------------------------------------------------------------------')
+  logger.info(f"Finish setting up RDS {DBINSTANCEIDENTIFIER} instance")

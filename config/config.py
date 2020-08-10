@@ -17,8 +17,8 @@ config = {
   },
 
   "DATA": {
-    "DATACSV"  : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATACSV')}"),
-    "DATAJSON" : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATAJSON')}")
+    "DATASONG" : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATASONG')}"),
+    "DATALOG"  : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATALOG')}")
   },
 
   "LOG": {

@@ -1,16 +1,15 @@
 from logger import get_logger
-from .helper import connect_to_db, close_connection, execute_sql
-from .queries import database_drop, database_create, \
-                    songplay_table_drop, \
-                    user_table_drop, \
-                    song_table_drop, \
-                    artist_table_drop, \
-                    time_table_drop, \
-                    songplay_table_create, \
-                    user_table_create, \
-                    song_table_create, \
-                    artist_table_create, \
-                    time_table_create
+from .connection import connect_to_db, close_connection, execute_sql
+from .queries import songplay_table_drop, \
+                      user_table_drop, \
+                      song_table_drop, \
+                      artist_table_drop, \
+                      time_table_drop, \
+                      songplay_table_create, \
+                      user_table_create, \
+                      song_table_create, \
+                      artist_table_create, \
+                      time_table_create
 
 
 # Setup logger
@@ -38,5 +37,4 @@ def create_schema():
 
   close_connection(conn)
 
-  logger.info(f"Finish creating Schema" +
-  '\n------------------------------------------------------------------------------------------')
+  logger.info(f"Finish creating Schema")

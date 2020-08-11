@@ -5,18 +5,18 @@ from db import create_db, create_schema
 from etl import etl
 
 LOG       = config['LOG']['LOG']
-DBONCLOUD = config['OPT']['DBONCLOUD']
+DB_ON_CLOUD = config['OPT']['DB_ON_CLOUD']
 
 def main():
-  # if DBONCLOUD:
+  # if DB_ON_CLOUD:
   #   setup_rds_instance()
   
-  # delete_rds_instance()
+  delete_rds_instance()
 
   # create_db()
   # create_schema()
 
-  etl()
+  # etl()
 
 if __name__ == '__main__':
   # Reset file log

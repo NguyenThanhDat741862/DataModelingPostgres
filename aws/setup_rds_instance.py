@@ -10,22 +10,22 @@ KEY                     = config['AWS']['KEY']
 SECRET                  = config['AWS']['SECRET']
 REGION                  = config['AWS']['REGION']
 
-DBNAME                  = config['RDS']['DBNAME']
-DBINSTANCEIDENTIFIER    = config['RDS']['DBINSTANCEIDENTIFIER']
-ALLOCATEDSTORAGE        = config['RDS']['ALLOCATEDSTORAGE']
-DBINSTANCECLASS         = config['RDS']['DBINSTANCECLASS']
-ENGINE                  = config['RDS']['ENGINE']
-ENGINEVERSION           = config['RDS']['ENGINEVERSION']
-MASTERUSERNAME          = config['RDS']['MASTERUSERNAME']
-MASTERUSERPASSWORD      = config['RDS']['MASTERUSERPASSWORD']
-VPCSECURITYGROUPIDS     = config['RDS']['VPCSECURITYGROUPIDS']
-AVAILABILITYZONE        = config['RDS']['AVAILABILITYZONE']
-BACKUPRETENTIONPERIOD   = config['RDS']['BACKUPRETENTIONPERIOD']
-DBPORT                  = config['RDS']['DBPORT']
-MULTIAZ                 = config['RDS']['MULTIAZ']
-AUTOMINORVERSIONUPGRADE = config['RDS']['AUTOMINORVERSIONUPGRADE']
-PUBLICLYACCESSIBLE      = config['RDS']['PUBLICLYACCESSIBLE']
-STORAGETYPE             = config['RDS']['STORAGETYPE']
+DB_NAME                    = config['RDS']['DB_NAME']
+DB_INSTANCE_IDENTIFIER     = config['RDS']['DB_INSTANCE_IDENTIFIER']
+ALLOCATED_STORAGE          = config['RDS']['ALLOCATED_STORAGE']
+DB_INSTANCE_CLASS          = config['RDS']['DB_INSTANCE_CLASS']
+ENGINE                     = config['RDS']['ENGINE']
+ENGINE_VERSION             = config['RDS']['ENGINE_VERSION']
+MASTER_USERNAME            = config['RDS']['MASTER_USERNAME']
+MASTER_USER_PASSWORD       = config['RDS']['MASTER_USER_PASSWORD']
+VPC_SECURITY_GROUP_IDS     = config['RDS']['VPC_SECURITY_GROUP_IDS']
+AVAILABILITY_ZONE          = config['RDS']['AVAILABILITY_ZONE']
+BACKUP_RETENTION_PERIOD    = config['RDS']['BACKUP_RETENTION_PERIOD']
+DB_PORT                    = config['RDS']['DB_PORT']
+MULTI_AZ                   = config['RDS']['MULTI_AZ']
+AUTO_MINOR_VERSION_UPGRADE = config['RDS']['AUTO_MINOR_VERSION_UPGRADE']
+PUBLICLY_ACCESSIBLE        = config['RDS']['PUBLICLY_ACCESSIBLE']
+STORAGE_TYPE               = config['RDS']['STORAGE_TYPE']
 
 
 # Setup logger
@@ -41,51 +41,51 @@ def setup_rds_instance():
     aws_secret_access_key=SECRET
   )
 
-  logger.info(f"Start setting up RDS {DBINSTANCEIDENTIFIER} instance")
+  logger.info(f"Start setting up RDS {DB_INSTANCE_IDENTIFIER} instance")
   
   try:
     response = rds.create_db_instance(
-      DBName=DBNAME,
-      DBInstanceIdentifier=DBINSTANCEIDENTIFIER,
-      AllocatedStorage=ALLOCATEDSTORAGE,
-      DBInstanceClass=DBINSTANCECLASS,
+      DBName=DB_NAME,
+      DBInstanceIdentifier=DB_INSTANCE_IDENTIFIER,
+      AllocatedStorage=ALLOCATED_STORAGE,
+      DBInstanceClass=DB_INSTANCE_CLASS,
       Engine=ENGINE,
-      EngineVersion=ENGINEVERSION,
-      MasterUsername=MASTERUSERNAME,
-      MasterUserPassword=MASTERUSERPASSWORD,
-      VpcSecurityGroupIds=[VPCSECURITYGROUPIDS],
-      AvailabilityZone=AVAILABILITYZONE,
-      BackupRetentionPeriod=BACKUPRETENTIONPERIOD,
+      EngineVersion=ENGINE_VERSION,
+      MasterUsername=MASTER_USERNAME,
+      MasterUserPassword=MASTER_USER_PASSWORD,
+      VpcSecurityGroupIds=[VPC_SECURITY_GROUP_IDS],
+      AvailabilityZone=AVAILABILITY_ZONE,
+      BackupRetentionPeriod=BACKUP_RETENTION_PERIOD,
       Port=DBPORT,
-      MultiAZ=MULTIAZ,
-      AutoMinorVersionUpgrade=AUTOMINORVERSIONUPGRADE,
-      PubliclyAccessible=PUBLICLYACCESSIBLE,
-      StorageType=STORAGETYPE,
+      MultiAZ=MULTI_AZ,
+      AutoMinorVersionUpgrade=AUTO_MINOR_VERSION_UPGRADE,
+      PubliclyAccessible=PUBLICLY_ACCESSIBLE,
+      StorageType=STORAGE_TYPE,
       Tags=[{'Key': 'DB', 'Value': 'PostgreSQL'}]
     )
 
-    logger.info(f"Starting RDS instance with ID: {DBINSTANCEIDENTIFIER}")
+    logger.info(f"Starting RDS instance with ID: {DB_INSTANCE_IDENTIFIER}")
 
   except botocore.exceptions.ClientError as e:
     if 'DBInstanceAlreadyExists' in e.message:
-      logger.error(f"DB instance {DBINSTANCEIDENTIFIER} exists already, continuing to poll ...")
+      logger.error(f"DB instance {DB_INSTANCE_IDENTIFIER} exists already, continuing to poll ...")
     else:
       raise
 
   while True:
     try:
-      response = rds.describe_db_instances(DBInstanceIdentifier=DBINSTANCEIDENTIFIER)
+      response = rds.describe_db_instances(DB_INSTANCE_IDENTIFIER=DB_INSTANCE_IDENTIFIER)
       db_instance = response['DBInstances'][0]
       status = db_instance['DBInstanceStatus']
 
-      logger.info(f"RDS {DBINSTANCEIDENTIFIER} instance is {status}")
+      logger.info(f"RDS {DB_INSTANCE_IDENTIFIER} instance is {status}")
 
       time.sleep(10)
 
       if status == 'available':
           host = db_instance['Endpoint']['Address']
-          logger.info(f"RDS {DBINSTANCEIDENTIFIER} instance ready with host: {host}")
-          logger.info(f"RDS {DBINSTANCEIDENTIFIER} instance info: {db_instance}")
+          logger.info(f"RDS {DB_INSTANCE_IDENTIFIER} instance ready with host: {host}")
+          logger.info(f"RDS {DB_INSTANCE_IDENTIFIER} instance info: {db_instance}")
           
           break
 
@@ -93,4 +93,4 @@ def setup_rds_instance():
       logger.error(e)
       raise
 
-  logger.info(f"Finish setting up RDS {DBINSTANCEIDENTIFIER} instance")
+  logger.info(f"Finish setting up RDS {DB_INSTANCE_IDENTIFIER} instance")

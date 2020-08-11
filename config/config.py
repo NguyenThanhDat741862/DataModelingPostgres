@@ -9,16 +9,16 @@ parser.read_file(open(os.path.join(ROOT_DIR, './config.ini')))
 config = {
   "ROOT_DIR": ROOT_DIR,
   "DB": {
-    "DBNAME"     : parser.get('DB', 'DBNAME'),
-    "DBUSERNAME" : parser.get('DB', 'DBUSERNAME'),
-    "DBPASSWORD" : parser.get('DB', 'DBPASSWORD'),
-    "DBHOST"     : parser.get('DB', 'DBHOST'),
-    "DBPORT"     : parser.getint('DB','DBPORT')
+    "DB_NAME"     : parser.get('DB', 'DB_NAME'),
+    "DB_USERNAME" : parser.get('DB', 'DB_USERNAME'),
+    "DB_PASSWORD" : parser.get('DB', 'DB_PASSWORD'),
+    "DB_HOST"     : parser.get('DB', 'DB_HOST'),
+    "DB_PORT"     : parser.getint('DB','DB_PORT')
   },
 
   "DATA": {
-    "DATASONG" : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATASONG')}"),
-    "DATALOG"  : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATALOG')}")
+    "DATA_SONG" : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATA_SONG')}"),
+    "DATA_LOG"  : os.path.join(ROOT_DIR, f"./{parser.get('DATA', 'DATA_LOG')}")
   },
 
   "LOG": {
@@ -26,7 +26,7 @@ config = {
   },
 
   "OPT": {
-    "DBONCLOUD" : parser.get('OPT','DBONCLOUD')
+    "DB_ON_CLOUD" : parser.get('OPT','DB_ON_CLOUD')
   },
 
   "AWS": {
@@ -36,21 +36,21 @@ config = {
   },
 
   "RDS": {
-    "DBNAME"                  : parser.get('RDS','DBNAME'),
-    "DBINSTANCEIDENTIFIER"    : parser.get('RDS','DBINSTANCEIDENTIFIER'),
-    "ALLOCATEDSTORAGE"        : parser.getint('RDS','ALLOCATEDSTORAGE'),
-    "DBINSTANCECLASS"         : parser.get('RDS','DBINSTANCECLASS'),
+    "DB_NAME"                  : parser.get('RDS','DB_NAME'),
+    "DB_INSTANCE_IDENTIFIER"    : parser.get('RDS','DB_INSTANCE_IDENTIFIER'),
+    "ALLOCATED_STORAGE"        : parser.getint('RDS','ALLOCATED_STORAGE'),
+    "DB_INSTANCE_CLASS"         : parser.get('RDS','DB_INSTANCE_CLASS'),
     "ENGINE"                  : parser.get('RDS','ENGINE'),
-    "ENGINEVERSION"           : parser.get('RDS','ENGINEVERSION'),
-    "MASTERUSERNAME"          : parser.get('RDS','MASTERUSERNAME'),
-    "MASTERUSERPASSWORD"      : parser.get('RDS','MASTERUSERPASSWORD'),
-    "VPCSECURITYGROUPIDS"     : parser.get('RDS','VPCSECURITYGROUPIDS'),
-    "AVAILABILITYZONE"        : parser.get('RDS','AVAILABILITYZONE'),
-    "BACKUPRETENTIONPERIOD"   : parser.getint('RDS', 'BACKUPRETENTIONPERIOD'),
-    "DBPORT"                  : parser.getint('RDS','DBPORT'),
-    "MULTIAZ"                 : parser.getboolean('RDS', 'MULTIAZ'),
-    "AUTOMINORVERSIONUPGRADE" : parser.getboolean('RDS','AUTOMINORVERSIONUPGRADE'),
-    "PUBLICLYACCESSIBLE"      : parser.getboolean('RDS','PUBLICLYACCESSIBLE'),
-    "STORAGETYPE"             : parser.get('RDS','STORAGETYPE')
+    "ENGINE_VERSION"           : parser.get('RDS','ENGINE_VERSION'),
+    "MASTER_USERNAME"          : parser.get('RDS','MASTER_USERNAME'),
+    "MASTER_USER_PASSWORD"      : parser.get('RDS','MASTER_USER_PASSWORD'),
+    "VPC_SECURITY_GROUP_IDS"     : parser.get('RDS','VPC_SECURITY_GROUP_IDS'),
+    "AVAILABILITY_ZONE"        : parser.get('RDS','AVAILABILITY_ZONE'),
+    "BACKUP_RETENTION_PERIOD"   : parser.getint('RDS', 'BACKUP_RETENTION_PERIOD'),
+    "DB_PORT"                  : parser.getint('RDS','DB_PORT'),
+    "MULTI_AZ"                 : parser.getboolean('RDS', 'MULTI_AZ'),
+    "AUTO_MINOR_VERSION_UPGRADE" : parser.getboolean('RDS','AUTO_MINOR_VERSION_UPGRADE'),
+    "PUBLICLY_ACCESSIBLE"      : parser.getboolean('RDS','PUBLICLY_ACCESSIBLE'),
+    "STORAGE_TYPE"             : parser.get('RDS','STORAGE_TYPE')
   }
 }

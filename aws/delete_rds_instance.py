@@ -10,7 +10,7 @@ KEY                  = config['AWS']['KEY']
 SECRET               = config['AWS']['SECRET']
 REGION               = config['AWS']['REGION']
 
-DBINSTANCEIDENTIFIER = config['RDS']['DBINSTANCEIDENTIFIER']
+DB_INSTANCE_IDENTIFIER = config['RDS']['DB_INSTANCE_IDENTIFIER']
 
 
 # Setup logger
@@ -26,16 +26,16 @@ def delete_rds_instance():
     aws_secret_access_key=SECRET
   )
 
-  logger.info(f"Start deleting RDS {DBINSTANCEIDENTIFIER} instance")
+  logger.info(f"Start deleting RDS {DB_INSTANCE_IDENTIFIER} instance")
   
   try:
     response = rds.delete_db_instance(
-      DBInstanceIdentifier=DBINSTANCEIDENTIFIER,
+      DBInstanceIdentifier=DB_INSTANCE_IDENTIFIER,
       SkipFinalSnapshot=True,
       DeleteAutomatedBackups=True
     )
 
-    logger.info(f"Deleting RDS instance with ID: {DBINSTANCEIDENTIFIER}")
+    logger.info(f"Deleting RDS instance with ID: {DB_INSTANCE_IDENTIFIER}")
 
   except botocore.exceptions.ClientError as e:
     logger.error(e)
@@ -43,17 +43,17 @@ def delete_rds_instance():
 
   while True:
     try:
-      rds.describe_db_instances(DBInstanceIdentifier=DBINSTANCEIDENTIFIER)
+      rds.describe_db_instances(DBInstanceIdentifier=DB_INSTANCE_IDENTIFIER)
       
-      logger.info(f"RDS {DBINSTANCEIDENTIFIER} instance is deleting")
+      logger.info(f"RDS {DB_INSTANCE_IDENTIFIER} instance is deleting")
       
       time.sleep(10)
     except botocore.exceptions.ClientError as e:
-      logger.info(f"RDS {DBINSTANCEIDENTIFIER} instance is deleted")
+      logger.info(f"RDS {DB_INSTANCE_IDENTIFIER} instance is deleted")
 
       break
 
-  logger.info(f"Finish deleting RDS {DBINSTANCEIDENTIFIER} instance")
+  logger.info(f"Finish deleting RDS {DB_INSTANCE_IDENTIFIER} instance")
 
 
 # Run

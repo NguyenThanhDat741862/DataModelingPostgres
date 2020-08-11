@@ -6,7 +6,7 @@ from .process_song_file import process_song_file
 
 
 # Config
-DATASONG = config['DATA']['DATASONG']
+DATA_SONG = config['DATA']['DATA_SONG']
 
 
 # Setup logger
@@ -32,5 +32,5 @@ def process_data(path, func):
   logger.info(f"Finish processing '{path}' data")
 
 def etl():
-  process_data(DATASONG, process_song_file)
+  process_data(DATA_SONG, process_song_file)
   

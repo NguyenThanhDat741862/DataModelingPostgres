@@ -36,6 +36,57 @@ They need a database which is designed to optimize queries for their analysis ( 
 
 ## Structure
 
+```
+📦DataModelingPostgres
+ ┣ 📂attachment
+ ┃ ┗ 📜schema.png
+ ┣ 📂aws
+ ┃ ┣ 📜delete_rds_instance.py
+ ┃ ┣ 📜setup_rds_instance.py
+ ┃ ┗ 📜__init__.py
+ ┣ 📂config
+ ┃ ┣ 📜config.py
+ ┃ ┗ 📜__init__.py
+ ┣ 📂data
+ ┃ ┣ 📂log_data
+ ┃ ┗ 📂song_data
+ ┣ 📂db
+ ┃ ┣ 📂connection
+ ┃ ┃ ┣ 📜connection.py
+ ┃ ┃ ┣ 📜execute_sql.py
+ ┃ ┃ ┗ 📜__init__.py
+ ┃ ┣ 📂queries
+ ┃ ┃ ┣ 📜create_tables.py
+ ┃ ┃ ┣ 📜drop_tables.py
+ ┃ ┃ ┣ 📜insert_tables.py
+ ┃ ┃ ┣ 📜select_queries.py
+ ┃ ┃ ┣ 📜setup_db.py
+ ┃ ┃ ┗ 📜__init__.py
+ ┃ ┣ 📜create_db.py
+ ┃ ┣ 📜create_schema.py
+ ┃ ┣ 📜insert_db.py
+ ┃ ┣ 📜select_song.py
+ ┃ ┗ 📜__init__.py
+ ┣ 📂etl
+ ┃ ┣ 📜etl.py
+ ┃ ┣ 📜process_log_file.py
+ ┃ ┣ 📜process_song_file.py
+ ┃ ┗ 📜__init__.py
+ ┣ 📂logger
+ ┃ ┣ 📜logger.py
+ ┃ ┗ 📜__init__.py
+ ┣ 📂logs
+ ┃ ┗ 📜.gitkeep
+ ┣ 📜.gitignore
+ ┣ 📜config.template.ini
+ ┣ 📜main.py
+ ┣ 📜Pipfile
+ ┣ 📜Pipfile.lock
+ ┣ 📜README.md
+ ┣ 📜requirements.txt
+ ┗ 📜result.ipynb
+```
+
 ## Usage
 
 1. Clone repository

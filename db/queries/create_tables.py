@@ -1,7 +1,7 @@
 # Fact table
 songplay_table_create = ("""
   CREATE TABLE IF NOT EXISTS songplays
-  (songplay_id int PRIMARY KEY, 
+  (songplay_id uuid PRIMARY KEY, 
   start_time date REFERENCES time(start_time), 
   user_id int NOT NULL REFERENCES users(user_id), 
   level text, 

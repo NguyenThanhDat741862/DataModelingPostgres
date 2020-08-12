@@ -1,5 +1,6 @@
 import math
 import pandas as pd
+from uuid import uuid4
 from db import select_song, insert_db
 
 def extract_log_file(path):
@@ -20,14 +21,14 @@ def transform_time_data(times_series):
 def transform_playsong_data(playsongs, conn):
   result = []
 
-  for i, playsong in enumerate(playsongs):
+  for playsong in playsongs:
     query_result = select_song(conn, playsong[0])
     song_id, artist_id = None, None
     
     if query_result:
       song_id, artist_id = query_result[0]
 
-    result.append((i, pd.to_datetime(playsong[1][0], unit='ms'), *list(playsong[1])[1:3], song_id, artist_id, *list(playsong[1])[3:]))
+    result.append((str(uuid4()), pd.to_datetime(playsong[1][0], unit='ms'), *list(playsong[1])[1:3], song_id, artist_id, *list(playsong[1])[3:]))
 
   return result
 

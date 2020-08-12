@@ -11,6 +11,7 @@ botocore = "*"
 configparser = "*"
 psycopg2 = "*"
 pandas = "*"
+uuid = "*"
 
 [requires]
 python_version = "3.8"

@@ -9,7 +9,6 @@
 - [Usage](#usage)
 - [Run](#run)
 - [Result](#result)
-- [Warning](#warning)
 
 ## Introduction
 
@@ -39,8 +38,32 @@ They need a database which is designed to optimize queries for their analysis ( 
 
 ## Usage
 
+1. Clone repository
+
+```
+  git clone https://github.com/NguyenThanhDat741862/DataModelingPostgres.git
+```
+
+2. Cd into directory
+
+```
+  cd DataModelingPostgres
+```
+
+3. Install dependencies using npm
+
+```
+  pip install -r requirements.txt
+```
+
 ## Run
+
+```
+  python ./main.py
+```
 
 ## Result
 
-## Warning
+- Can be found in logs folder ( logs/log.log ).
+
+- Open result.ipynb file and run all.

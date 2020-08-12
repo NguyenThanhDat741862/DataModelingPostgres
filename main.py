@@ -10,8 +10,8 @@ DB_ON_CLOUD = config['OPT']['DB_ON_CLOUD']
 def main():
   # delete_rds_instance()
 
-  # if DB_ON_CLOUD:
-  #   setup_rds_instance()
+  if DB_ON_CLOUD:
+    setup_rds_instance()
 
   create_db()
   create_schema()

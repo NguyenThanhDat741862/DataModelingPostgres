@@ -3,10 +3,12 @@ from config import config
 from logger import get_logger
 from db import connect_to_db, close_connection
 from .process_song_file import process_song_file
+from .process_log_file import process_log_file
 
 
 # Config
 DATA_SONG = config['DATA']['DATA_SONG']
+DATA_LOG  = config['DATA']['DATA_LOG']
 
 
 # Setup logger
@@ -31,6 +33,8 @@ def process_data(path, func):
   close_connection(conn)
   logger.info(f"Finish processing '{path}' data")
 
+
 def etl():
   process_data(DATA_SONG, process_song_file)
+  process_data(DATA_LOG, process_log_file)
   

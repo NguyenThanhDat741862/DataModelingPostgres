@@ -13,7 +13,7 @@
 
 ## Introduction
 
-This project is the first project in [Udacity Data Engineering Nanodegree Program](https://www.udacity.com/course/data-engineer-nanodegree--nd027) course.
+This project is based on the first project in [Udacity Data Engineering Nanodegree Program](https://www.udacity.com/course/data-engineer-nanodegree--nd027) course.
 
 The aims of this project are:
 
@@ -21,11 +21,13 @@ The aims of this project are:
 
 - Learn how to build a simple ETL pipeline using Python.
 
+- Learn how to setup RDS using boto3.
+
 ## Context
 
 A startup company providing music streaming, named Sparkify, want to analyst their collected user data to make better business decisions.
 
-The application data are available and stored in the format of JSON ( in data folder ).
+The application data are available and stored in the format of JSON ( 🠊 in data folder ).
 
 They need a database which is designed to optimize queries for their analysis ( 🠊 the goal of this project ).
 

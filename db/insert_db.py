@@ -10,7 +10,7 @@ from .queries import songplay_table_insert, \
 table_insert_sql = {
   "songplay" : songplay_table_insert,
   "song"     : song_table_insert,
-  "artist"     : artist_table_insert,
+  "artist"   : artist_table_insert,
   "time"     : time_table_insert,
   "user"     : user_table_insert,
 }

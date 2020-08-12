@@ -56,7 +56,7 @@ def setup_rds_instance():
       VpcSecurityGroupIds=[VPC_SECURITY_GROUP_IDS],
       AvailabilityZone=AVAILABILITY_ZONE,
       BackupRetentionPeriod=BACKUP_RETENTION_PERIOD,
-      Port=DBPORT,
+      Port=DB_PORT,
       MultiAZ=MULTI_AZ,
       AutoMinorVersionUpgrade=AUTO_MINOR_VERSION_UPGRADE,
       PubliclyAccessible=PUBLICLY_ACCESSIBLE,
@@ -67,14 +67,12 @@ def setup_rds_instance():
     logger.info(f"Starting RDS instance with ID: {DB_INSTANCE_IDENTIFIER}")
 
   except botocore.exceptions.ClientError as e:
-    if 'DBInstanceAlreadyExists' in e.message:
-      logger.error(f"DB instance {DB_INSTANCE_IDENTIFIER} exists already, continuing to poll ...")
-    else:
-      raise
+    logger.error(e)
+    raise
 
   while True:
     try:
-      response = rds.describe_db_instances(DB_INSTANCE_IDENTIFIER=DB_INSTANCE_IDENTIFIER)
+      response = rds.describe_db_instances(DBInstanceIdentifier=DB_INSTANCE_IDENTIFIER)
       db_instance = response['DBInstances'][0]
       status = db_instance['DBInstanceStatus']
 

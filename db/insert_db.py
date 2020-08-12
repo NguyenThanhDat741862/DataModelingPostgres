@@ -1,4 +1,3 @@
-from logger import get_logger
 from .connection import execute_sql
 from .queries import songplay_table_insert, \
                       song_table_insert, \

@@ -1,4 +1,3 @@
-from logger import get_logger
 from .connection import execute_sql
 from .queries import song_select
 
